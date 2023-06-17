@@ -1,9 +1,23 @@
 import { useState } from "react";
+import { setCountry } from "@/redux/slices/country";
+import { useAppDispatch } from "@/redux/store/hooks";
 
 const SearchCountry: React.FC = () => {
   const [countryName, setCountryName] = useState<string>("");
 
-  // const handleSearch = () => {};
+  const dispatch = useAppDispatch();
+
+  const handleSearch = () => {
+    dispatch(setCountry(countryName));
+  };
+
+  const handleSearchOnKeyPress = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (event.key === "Enter") {
+      dispatch(setCountry(countryName));
+    }
+  };
 
   return (
     <div className="relative w-96 col-start-1 col-end-4">
@@ -15,8 +29,12 @@ const SearchCountry: React.FC = () => {
         required
         value={countryName}
         onChange={(e) => setCountryName(e.target.value)}
+        onKeyDown={handleSearchOnKeyPress}
       />
-      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+      <div
+        className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+        onClick={handleSearch}
+      >
         <svg
           aria-hidden="true"
           className="w-5 h-5 text-gray-500 dark:text-gray-400"
