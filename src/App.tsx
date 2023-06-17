@@ -6,7 +6,7 @@ const App = () => {
       <Header />
       <div className="flex flex-row gap-3 items-center px-6">
         <WorldMap />
-        <Country />
+        <Country countryName="Vietnam" />
       </div>
     </div>
   );
