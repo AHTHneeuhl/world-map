@@ -1,5 +1,15 @@
+import { Country, Header, WorldMap } from "@/components";
+
 const App = () => {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <div>
+      <Header />
+      <div className="flex flex-row gap-3 items-center px-6">
+        <WorldMap />
+        <Country />
+      </div>
+    </div>
+  );
 };
 
 export default App;
