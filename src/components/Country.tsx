@@ -1,11 +1,16 @@
 import useCountries from "@/hooks/useCountries";
-import { Text, Spinner } from "@/components/common";
+import { Text, Spinner, EmptyState } from "@/components/common";
 import { numberWithCammas } from "@/utils/helpers";
 
 const Country: React.FC = () => {
   const { isLoading, country } = useCountries();
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <EmptyState>
+        <Spinner />
+      </EmptyState>
+    );
 
   return (
     <div className="border border-neutral-100 w-96 h-[80vh] rounded-2xl px-4 py-6 hover:shadow cursor-pointer transition">
@@ -51,19 +56,21 @@ const Country: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className="flex flex-row items-center justify-between my-2">
-        <Text label="Borders" />
-        <div className="flex flex-wrap gap-2">
-          {country?.borders.map((border: string) => (
-            <p
-              key={border}
-              className="bg-teal-500 text-white text-xs font-medium px-1"
-            >
-              {border}
-            </p>
-          ))}
+      {country?.borders ? (
+        <div className="flex flex-row items-center justify-between my-2">
+          <Text label="Borders" />
+          <div className="flex flex-wrap gap-2">
+            {country?.borders.map((border: string) => (
+              <p
+                key={border}
+                className="bg-teal-500 text-white text-xs font-medium px-1"
+              >
+                {border}
+              </p>
+            ))}
+          </div>
         </div>
-      </div>
+      ) : null}
       <div className="flex flex-row gap-3 items-center my-2 justify-between">
         <Text label="Maps" />
         <button
