@@ -1,7 +1,7 @@
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import useCountries from "@/hooks/useCountries";
-import { Spinner } from "@/components/common";
+import { EmptyState, Spinner } from "@/components/common";
 import { LatLng, LatLngExpression } from "leaflet";
 
 const WorldMap: React.FC = () => {
@@ -11,7 +11,12 @@ const WorldMap: React.FC = () => {
     ? new LatLng(country.latlng[0], country.latlng[1])
     : undefined;
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <EmptyState>
+        <Spinner />
+      </EmptyState>
+    );
 
   return (
     <MapContainer
