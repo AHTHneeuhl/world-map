@@ -2,8 +2,12 @@ import useCountries from "@/hooks/useCountries";
 import { Text, Spinner } from "@/components/common";
 import { numberWithCammas } from "@/utils/helpers";
 
-const Country: React.FC = () => {
-  const { isLoading, country } = useCountries("India");
+type TProps = {
+  countryName: string;
+};
+
+const Country: React.FC<TProps> = ({ countryName }) => {
+  const { isLoading, country } = useCountries(countryName);
 
   if (isLoading) return <Spinner />;
 

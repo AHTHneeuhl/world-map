@@ -1,12 +1,20 @@
+import { useState } from "react";
+
 const SearchCountry: React.FC = () => {
+  const [countryName, setCountryName] = useState<string>("");
+
+  // const handleSearch = () => {};
+
   return (
-    <div className="relative col-start-1 col-end-4">
+    <div className="relative w-96 col-start-1 col-end-4">
       <input
         type="search"
         id="search"
         className="block w-full py-3 px-4 pr-10 bg-neutral-100 rounded-full text-sm border-0 outline-none focus:outline-none"
         placeholder="Search"
         required
+        value={countryName}
+        onChange={(e) => setCountryName(e.target.value)}
       />
       <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
         <svg
