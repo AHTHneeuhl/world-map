@@ -5,7 +5,7 @@ import { Spinner } from "@/components/common";
 import { LatLng, LatLngExpression } from "leaflet";
 
 const WorldMap: React.FC = () => {
-  const { country, isLoading } = useCountries("Vietnam");
+  const { country, isLoading } = useCountries();
 
   const position: LatLngExpression | undefined = country?.latlng
     ? new LatLng(country.latlng[0], country.latlng[1])

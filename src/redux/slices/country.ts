@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currentCountry: "",
+  currentCountry: "India",
 };
 
 export const country = createSlice({

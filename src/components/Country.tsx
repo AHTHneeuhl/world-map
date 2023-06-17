@@ -2,12 +2,8 @@ import useCountries from "@/hooks/useCountries";
 import { Text, Spinner } from "@/components/common";
 import { numberWithCammas } from "@/utils/helpers";
 
-type TProps = {
-  countryName: string;
-};
-
-const Country: React.FC<TProps> = ({ countryName }) => {
-  const { isLoading, country } = useCountries(countryName);
+const Country: React.FC = () => {
+  const { isLoading, country } = useCountries();
 
   if (isLoading) return <Spinner />;
 
@@ -42,19 +38,26 @@ const Country: React.FC<TProps> = ({ countryName }) => {
       />
       <Text label="Region" content={country?.region} />
       <Text label="Subregion" content={country?.subregion} />
-      <div className="flex flex-row items-center justify-between">
+      <div className="flex flex-row items-center justify-between my-2">
         <Text label="Timezones" />
-        {country?.timezones.map((timezone: string) => (
-          <Text key={timezone} content={timezone} />
-        ))}
+        <div className="flex flex-wrap gap-2">
+          {country?.timezones.map((timezone: string) => (
+            <p
+              key={timezone}
+              className="text-white bg-teal-500 text-xs font-medium px-1"
+            >
+              {timezone}
+            </p>
+          ))}
+        </div>
       </div>
-      <div className="flex flex-row items-center justify-between">
+      <div className="flex flex-row items-center justify-between my-2">
         <Text label="Borders" />
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-wrap gap-2">
           {country?.borders.map((border: string) => (
             <p
               key={border}
-              className="bg-teal-500 text-white text-sm font-medium px-1"
+              className="bg-teal-500 text-white text-xs font-medium px-1"
             >
               {border}
             </p>
