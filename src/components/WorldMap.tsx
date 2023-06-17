@@ -22,7 +22,7 @@ const WorldMap: React.FC = () => {
       center={[20, 77]}
       zoom={2}
       scrollWheelZoom={false}
-      className="w-[72%] h-[80vh] rounded-lg text-center my-5"
+      className="w-[72%] h-[80vh] text-center my-5 rounded-2xl border border-neutral-100 hover:shadow"
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
