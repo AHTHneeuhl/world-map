@@ -32,6 +32,17 @@ const Country: React.FC = () => {
       </div>
       <div className="flex flex-row items-center justify-between">
         <Text label="Currency" />
+        {country?.currencies ? (
+          <ul>
+            {Object.entries(country.currencies).map(([code, currency]) => (
+              <li key={code}>
+                <strong>{code}</strong>: {currency.name} - {currency.symbol}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <Text content="No currencies available" />
+        )}
       </div>
       <Text
         label="Population"

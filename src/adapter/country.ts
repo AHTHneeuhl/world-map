@@ -1,15 +1,19 @@
+interface Currency {
+  name: string;
+  symbol: string;
+}
+
+interface Currencies {
+  [key: string]: Currency;
+}
+
 type TAPIResponse = {
   name: {
     common: string;
     official: string;
   };
   independent: boolean;
-  currencies: {
-    INR: {
-      name: string;
-      symbol: string;
-    };
-  };
+  currencies: Currencies;
   capital: string[];
   altSpellings: string[];
   region: string;
@@ -34,6 +38,7 @@ type TAPIResponse = {
   };
 };
 
+// Country adapter class to parse api response from country api with types checking and mapping
 class CountryAdapter {
   private parseResponse = (apiResponse: TAPIResponse[]) => {
     return {
