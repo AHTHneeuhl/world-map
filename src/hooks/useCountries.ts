@@ -3,6 +3,8 @@ import fetchCountry from "@/api/fetchCountry";
 import { useAppSelector } from "@/redux/store/hooks";
 import { useEffect } from "react";
 
+// useCountries hook take countryName from redux store and return country detail,
+// here we have used useQuery to cache country detail
 const useCountries = () => {
   const countryName = useAppSelector((state) => state.country.currentCountry);
 
